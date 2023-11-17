@@ -33,7 +33,7 @@ jobs:
       - name: Copy Checkstyle Report to gh-pages Branch
         run: |
           git fetch origin gh-pages:gh-pages
-          git checkout gh-pages
+          git switch gh-pages
           mkdir -p github-pages  # Create destination directory if it doesn't exist
           cp  target/site/checkstyle.html  github-pages/checkstyle.html 
           git config --local user.email "action@github.com"
