@@ -9,9 +9,6 @@ on:
 jobs:
   checkstyle-on-push:
     runs-on: ubuntu-latest
-    defaults:
-        run:
-            working-directory: java
 
     steps:
       - name: Checkout code
