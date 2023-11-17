@@ -30,8 +30,19 @@ jobs:
       - name: checkstyle::checkstyle
         run: mvn checkstyle:checkstyle # This command runs the Checkstyle plugin
 
-      - name: ls
-        run: ls -Ra
+      - name: Copy Checkstyle Report to gh-pages Branch
+        run: |
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+          mkdir -p github-pages  # Create destination directory if it doesn't exist
+          cp  target/site/checkstyle.html  github-pages/checkstyle.html 
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add github-pages/checkstyle.html
+          git commit -m "Update Checkstyle report"
+          git push origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Checkstyle Report
         uses: actions/upload-artifact@v2
