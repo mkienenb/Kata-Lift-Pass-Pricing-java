@@ -108,7 +108,7 @@ public class PricesTest {
         for (String usageDateString : usageDateStrings) {
             for (String liftTicketType : liftTicketTypes) {
                 for (String age : agesAsString) {
-                    LiftTicket ticket = getLiftTicket(usageDateString, liftTicketType, age);
+                    liftTicket ticket = getLiftTicket(usageDateString, liftTicketType, age);
                     String costAsJson = costAsJson(costForTypeProvider, holidaysProvider, ticket);
                     result.append(ticket).append(" => ").append(costAsJson).append("\n");
                 }
@@ -120,7 +120,7 @@ public class PricesTest {
 
     private String costAsJson(CostForTypeProvider costForTypeProvider,
                               HolidaysProvider holidaysProvider,
-                              LiftTicket ticket) {
+                              liftTicket ticket) {
 
         String json;
 
@@ -134,8 +134,8 @@ public class PricesTest {
         return json;
     }
 
-    private LiftTicket getLiftTicket(String usageDateString, String liftTicketType, String skierAge) throws ParseException {
-        return new LiftTicket(liftTicketType, new SimpleDateFormat("yyyy-MM-dd").parse(usageDateString), skierAge);
+    private liftTicket getLiftTicket(String usageDateString, String liftTicketType, String skierAge) throws ParseException {
+        return new liftTicket(liftTicketType, new SimpleDateFormat("yyyy-MM-dd").parse(usageDateString), skierAge);
     }
 
 

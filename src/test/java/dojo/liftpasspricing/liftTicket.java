@@ -6,7 +6,7 @@ import java.util.Date;
 
 import static java.lang.Integer.*;
 
-public class LiftTicket {
+public class liftTicket {
     private final String liftTicketType;
     private final Date usageDate;
     private final Integer skierAge;
@@ -46,7 +46,7 @@ public class LiftTicket {
                 && usageDateCalendar.get(Calendar.DAY_OF_MONTH) == 25;
     }
 
-    public LiftTicket(String liftTicketType, Date usageDate, String _skierAgeString) {
+    public liftTicket(String liftTicketType, Date usageDate, String _skierAgeString) {
         this.liftTicketType = liftTicketType;
         this.usageDate = usageDate;
         this._skierAgeString = _skierAgeString;
