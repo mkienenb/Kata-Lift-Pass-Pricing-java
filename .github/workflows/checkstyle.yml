@@ -28,14 +28,18 @@ jobs:
           git fetch origin gh-pages:gh-pages
           git switch gh-pages
           mkdir -p github-pages  # Create destination directory if it doesn't exist
-          ls -lRa | nl
-          ls -lRa target | nl
+          # ls -lRa | nl
+          # 
           cp  target/site/checkstyle.html  github-pages/checkstyle.html 
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add github-pages/checkstyle.html
-          git commit -m "Update Checkstyle report"
-          git push origin gh-pages 
+          if [[ -n $(git status -s) ]]; then
+            git commit -m "Update Checkstyle report"
+            git push origin gh-pages
+          else
+            echo "No changes to commit"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
