@@ -20,12 +20,6 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
 
-      - name: Build with Maven
-        run: echo skip this step... # mvn -B clean install
-
-      - name: checkstyle::check
-        run: echo skip this step... # mvn checkstyle:check
-
       - name: checkstyle::checkstyle
         run: mvn checkstyle:checkstyle # This command runs the Checkstyle plugin
 
@@ -34,6 +28,8 @@ jobs:
           git fetch origin gh-pages:gh-pages
           git switch gh-pages
           mkdir -p github-pages  # Create destination directory if it doesn't exist
+          ls -lRa | nl
+          ls -lRa target | nl
           cp  target/site/checkstyle.html  github-pages/checkstyle.html 
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
