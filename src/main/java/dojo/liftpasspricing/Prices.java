@@ -18,10 +18,11 @@ import spark.Request;
  * Javadoc comment.
  */
 public class Prices {
-  /** Creates application.
+  /**
+   * Creates application.
    *
    * @param costForTypeProvider - costForTypeProvider
-   * @param holidaysProvider - holidaysProvider
+   * @param holidaysProvider    - holidaysProvider
    */
   public void createApplication(CostForTypeProvider costForTypeProvider,
                                 HolidaysProvider holidaysProvider) {
@@ -53,15 +54,16 @@ public class Prices {
         dateString);
   }
 
-  /** Full sentence.
+  /**
+   * Full sentence.
    *
-   * @param costForTypeProvider x
-   * @param holidaysProvider x
-   * @param ageString x
+   * @param costForTypeProvider  x
+   * @param holidaysProvider     x
+   * @param ageString            x
    * @param liftTicketTypeString x
-   * @param dateString x
+   * @param dateString           x
    * @return the cost as JSON
-   * @throws SQLException if there is a problem with the database.
+   * @throws SQLException   if there is a problem with the database.
    * @throws ParseException if there is a problem with the date.
    */
   public String getCostAsJson(CostForTypeProvider costForTypeProvider,
