@@ -14,8 +14,15 @@ import java.util.Date;
 import java.util.List;
 import spark.Request;
 
+/**
+ * Javadoc comment.
+ */
 public class Prices {
-
+  /** Creates application.
+   *
+   * @param costForTypeProvider - costForTypeProvider
+   * @param holidaysProvider - holidaysProvider
+   */
   public void createApplication(CostForTypeProvider costForTypeProvider,
                                 HolidaysProvider holidaysProvider) {
     port(4567);
@@ -46,6 +53,17 @@ public class Prices {
         dateString);
   }
 
+  /** Full sentence.
+   *
+   * @param costForTypeProvider x
+   * @param holidaysProvider x
+   * @param ageString x
+   * @param liftTicketTypeString x
+   * @param dateString x
+   * @return the cost as JSON
+   * @throws SQLException if there is a problem with the database.
+   * @throws ParseException if there is a problem with the date.
+   */
   public String getCostAsJson(CostForTypeProvider costForTypeProvider,
                               HolidaysProvider holidaysProvider, String ageString,
                               String liftTicketTypeString, String dateString)
@@ -68,8 +86,8 @@ public class Prices {
 
       // Seniors get an additional reduction
       if (age != null && age > 64) {
-        int reduction_additional_senior = 25;
-        cost *= reductionOff_1_to_100__to__factorOn_0_to_1(reduction_additional_senior);
+        int reductionAdditionalSenior = 25;
+        cost *= reductionOff_1_to_100__to__factorOn_0_to_1(reductionAdditionalSenior);
       }
     }
     return getJsonForCost(cost);
@@ -101,8 +119,8 @@ public class Prices {
   private boolean isSpecialDayButNotHoliday(HolidaysProvider holidaysProvider, String dateString,
                                             SimpleDateFormat isoFormat)
       throws ParseException, SQLException {
-    return (dateString != null) && isSpecialDay(dateString, isoFormat) &&
-        isNotHoliday(holidaysProvider, dateString, isoFormat);
+    return (dateString != null) && isSpecialDay(dateString, isoFormat)
+        && isNotHoliday(holidaysProvider, dateString, isoFormat);
   }
 
   private int getNightReduction(Integer age) {
@@ -118,13 +136,13 @@ public class Prices {
   }
 
   private double calculateCostReduction(int costForLiftTicketTypeFromDatabase, int reduction) {
-    return costForLiftTicketTypeFromDatabase *
-        reductionOff_1_to_100__to__factorOn_0_to_1(reduction);
+    return costForLiftTicketTypeFromDatabase
+        * reductionOff_1_to_100__to__factorOn_0_to_1(reduction);
   }
 
   private boolean isNotHoliday(HolidaysProvider holidaysProvider, String dateString,
                                DateFormat isoFormat) throws SQLException, ParseException {
-    return !isDateFromRequestAHoliday(holidaysProvider, dateString, isoFormat);
+    return !isDateFromRequestAnHoliday(holidaysProvider, dateString, isoFormat);
   }
 
   private boolean isSpecialDay(String dateString, DateFormat isoFormat) throws ParseException {
@@ -141,8 +159,8 @@ public class Prices {
     return (100 - reduction) / 100.0;
   }
 
-  private boolean isDateFromRequestAHoliday(HolidaysProvider holidaysProvider,
-                                            String dateFromRequest, DateFormat isoFormat)
+  private boolean isDateFromRequestAnHoliday(HolidaysProvider holidaysProvider,
+                                             String dateFromRequest, DateFormat isoFormat)
       throws SQLException, ParseException {
     List<Date> holidays = holidaysProvider.getHolidays();
     // Business logic
@@ -160,9 +178,9 @@ public class Prices {
 
   @SuppressWarnings("deprecation")
   private boolean areDatesEqual(Date holiday, Date d) {
-    return d.getYear() == holiday.getYear() && //
-        d.getMonth() == holiday.getMonth() && //
-        d.getDate() == holiday.getDate();
+    return d.getYear() == holiday.getYear()
+        && d.getMonth() == holiday.getMonth()
+        && d.getDate() == holiday.getDate();
   }
 
 }
